@@ -1,0 +1,49 @@
+<!-- userName 속성 값을 뷰에 반영 -->
+<h4>
+  <span>{{ userName }}</span
+  >님 환영합니다.
+</h4>
+
+<h4>{{ welcomeMsg }}</h4>
+
+<div class="contents">
+  <label for="user-name">사용자 이름:</label>
+  <!-- #nameInput속성의 선언된 INPUT요소 객체를 nameInput으로 사용할 수 있다. -->
+  <!--   <input
+    type="text"
+    name="user-name"
+    id="user-name"
+    #nameInput
+    (keyup)="onKeyUp(nameInput.value)"
+  /> -->
+
+  <!--   TODO:ngmodel을 app.module.ts에  FormsModule이 import되어야 사용가능하다. -->
+  <!-- TODO:한글을 입력할때 엔터나 스페이스등을 통하여 완료되는 경우
+  브라우저가 composittionend라는 이벤트를 발생하여 양방향 바인딩을 처리하기 때문에
+  compostioned 이벤트와 상관없이 현재 작성 중인 글자를 모두 뷰에 바인딩 하고 싶을 경우에는 COMPOSION_BUFFER_MODE 설정을 변경하면 된다.
+  자세한 내용은 app.module.ts 참고 -->
+  <input
+    type="text"
+    name="user-name"
+    id="user-name"
+    placeholder="사용자 이름"
+    [(ngModel)]="userName"
+  />
+  <!-- 클릭이벤트가 발생할때 setName메서드를 실행 -->
+  <!-- <button type="button" (click)="setName(nameInput.value)">입력</button> -->
+  <button type="button" (click)="showWelcomeMsg()">입력</button>
+</div>
+
+<mat-card>
+  <div class="title">Angular Material 적용</div>
+  <input
+    matInput
+    name="value"
+    placeholder="사용자 이름"
+    [(ngModel)]="userName"
+    (ngModelChange)="onChange()"
+  />
+
+  <button mat-raised-button (click)="showWelcomeMsg()">입력</button>
+  <span class="welCome-msg">{{ welcomeMsg }}</span>
+</mat-card>
